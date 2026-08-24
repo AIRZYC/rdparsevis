@@ -1,0 +1,458 @@
+{
+  "rules": [
+    {
+      "name": "expr",
+      "text": "expr -> expr + term | expr - term | term",
+      "raw_matches": [
+        "match(:expr, \"+\", :term)",
+        "match(:expr, \"-\", :term)",
+        "match(:term)"
+      ]
+    },
+    {
+      "name": "term",
+      "text": "term -> term * dice | term / dice | dice",
+      "raw_matches": [
+        "match(:term, \"*\", :dice)",
+        "match(:term, \"/\", :dice)",
+        "match(:dice)"
+      ]
+    },
+    {
+      "name": "dice",
+      "text": "dice -> atom d sides | atom",
+      "raw_matches": [
+        "match(:atom, \"d\", :sides)",
+        "match(:atom)"
+      ]
+    },
+    {
+      "name": "sides",
+      "text": "sides -> % | atom",
+      "raw_matches": [
+        "match(\"%\")",
+        "match(:atom)"
+      ]
+    },
+    {
+      "name": "atom",
+      "text": "atom -> Integer | ( expr )",
+      "raw_matches": [
+        "match(Integer)",
+        "match(\"(\", :expr, \")\")"
+      ]
+    }
+  ],
+  "tokens": [
+    "3",
+    "\"+\"",
+    "6"
+  ],
+  "timeline": [
+    {
+      "action": "enter",
+      "rule": "expr",
+      "pos": 0,
+      "depth": 1,
+      "message": "Entering rule 'expr' at pos 0"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [term]",
+      "pos": 0,
+      "depth": 2,
+      "message": "Entering rule 'Try: [term]' at pos 0"
+    },
+    {
+      "action": "enter",
+      "rule": "term",
+      "pos": 0,
+      "depth": 2,
+      "message": "Entering rule 'term' at pos 0"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [dice]",
+      "pos": 0,
+      "depth": 3,
+      "message": "Entering rule 'Try: [dice]' at pos 0"
+    },
+    {
+      "action": "enter",
+      "rule": "dice",
+      "pos": 0,
+      "depth": 3,
+      "message": "Entering rule 'dice' at pos 0"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [atom d sides]",
+      "pos": 0,
+      "depth": 4,
+      "message": "Entering rule 'Try: [atom d sides]' at pos 0"
+    },
+    {
+      "action": "enter",
+      "rule": "atom",
+      "pos": 0,
+      "depth": 4,
+      "message": "Entering rule 'atom' at pos 0"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [Integer]",
+      "pos": 0,
+      "depth": 5,
+      "message": "Entering rule 'Try: [Integer]' at pos 0"
+    },
+    {
+      "action": "success",
+      "rule": "Try: [Integer]",
+      "pos": 1,
+      "depth": 5,
+      "result": "3",
+      "message": "Rule 'Try: [Integer]' success at pos 1"
+    },
+    {
+      "action": "success",
+      "rule": "atom",
+      "pos": 1,
+      "depth": 4,
+      "result": "3",
+      "message": "Rule 'atom' success at pos 1"
+    },
+    {
+      "action": "fail",
+      "rule": "Try: [atom d sides]",
+      "pos": 0,
+      "depth": 4,
+      "result": "nil",
+      "message": "Rule 'Try: [atom d sides]' fail at pos 0"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [atom]",
+      "pos": 0,
+      "depth": 4,
+      "message": "Entering rule 'Try: [atom]' at pos 0"
+    },
+    {
+      "action": "enter",
+      "rule": "atom",
+      "pos": 0,
+      "depth": 4,
+      "message": "Entering rule 'atom' at pos 0"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [Integer]",
+      "pos": 0,
+      "depth": 5,
+      "message": "Entering rule 'Try: [Integer]' at pos 0"
+    },
+    {
+      "action": "success",
+      "rule": "Try: [Integer]",
+      "pos": 1,
+      "depth": 5,
+      "result": "3",
+      "message": "Rule 'Try: [Integer]' success at pos 1"
+    },
+    {
+      "action": "success",
+      "rule": "atom",
+      "pos": 1,
+      "depth": 4,
+      "result": "3",
+      "message": "Rule 'atom' success at pos 1"
+    },
+    {
+      "action": "success",
+      "rule": "Try: [atom]",
+      "pos": 1,
+      "depth": 4,
+      "result": "3",
+      "message": "Rule 'Try: [atom]' success at pos 1"
+    },
+    {
+      "action": "success",
+      "rule": "dice",
+      "pos": 1,
+      "depth": 3,
+      "result": "3",
+      "message": "Rule 'dice' success at pos 1"
+    },
+    {
+      "action": "success",
+      "rule": "Try: [dice]",
+      "pos": 1,
+      "depth": 3,
+      "result": "3",
+      "message": "Rule 'Try: [dice]' success at pos 1"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [* dice]",
+      "pos": 1,
+      "depth": 3,
+      "message": "Entering rule 'Try: [* dice]' at pos 1"
+    },
+    {
+      "action": "fail",
+      "rule": "Try: [* dice]",
+      "pos": 1,
+      "depth": 3,
+      "result": "nil",
+      "message": "Rule 'Try: [* dice]' fail at pos 1"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [/ dice]",
+      "pos": 1,
+      "depth": 3,
+      "message": "Entering rule 'Try: [/ dice]' at pos 1"
+    },
+    {
+      "action": "fail",
+      "rule": "Try: [/ dice]",
+      "pos": 1,
+      "depth": 3,
+      "result": "nil",
+      "message": "Rule 'Try: [/ dice]' fail at pos 1"
+    },
+    {
+      "action": "success",
+      "rule": "term",
+      "pos": 1,
+      "depth": 2,
+      "result": "3",
+      "message": "Rule 'term' success at pos 1"
+    },
+    {
+      "action": "success",
+      "rule": "Try: [term]",
+      "pos": 1,
+      "depth": 2,
+      "result": "3",
+      "message": "Rule 'Try: [term]' success at pos 1"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [+ term]",
+      "pos": 1,
+      "depth": 2,
+      "message": "Entering rule 'Try: [+ term]' at pos 1"
+    },
+    {
+      "action": "enter",
+      "rule": "term",
+      "pos": 2,
+      "depth": 2,
+      "message": "Entering rule 'term' at pos 2"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [dice]",
+      "pos": 2,
+      "depth": 3,
+      "message": "Entering rule 'Try: [dice]' at pos 2"
+    },
+    {
+      "action": "enter",
+      "rule": "dice",
+      "pos": 2,
+      "depth": 3,
+      "message": "Entering rule 'dice' at pos 2"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [atom d sides]",
+      "pos": 2,
+      "depth": 4,
+      "message": "Entering rule 'Try: [atom d sides]' at pos 2"
+    },
+    {
+      "action": "enter",
+      "rule": "atom",
+      "pos": 2,
+      "depth": 4,
+      "message": "Entering rule 'atom' at pos 2"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [Integer]",
+      "pos": 2,
+      "depth": 5,
+      "message": "Entering rule 'Try: [Integer]' at pos 2"
+    },
+    {
+      "action": "success",
+      "rule": "Try: [Integer]",
+      "pos": 3,
+      "depth": 5,
+      "result": "6",
+      "message": "Rule 'Try: [Integer]' success at pos 3"
+    },
+    {
+      "action": "success",
+      "rule": "atom",
+      "pos": 3,
+      "depth": 4,
+      "result": "6",
+      "message": "Rule 'atom' success at pos 3"
+    },
+    {
+      "action": "fail",
+      "rule": "Try: [atom d sides]",
+      "pos": 2,
+      "depth": 4,
+      "result": "nil",
+      "message": "Rule 'Try: [atom d sides]' fail at pos 2"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [atom]",
+      "pos": 2,
+      "depth": 4,
+      "message": "Entering rule 'Try: [atom]' at pos 2"
+    },
+    {
+      "action": "enter",
+      "rule": "atom",
+      "pos": 2,
+      "depth": 4,
+      "message": "Entering rule 'atom' at pos 2"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [Integer]",
+      "pos": 2,
+      "depth": 5,
+      "message": "Entering rule 'Try: [Integer]' at pos 2"
+    },
+    {
+      "action": "success",
+      "rule": "Try: [Integer]",
+      "pos": 3,
+      "depth": 5,
+      "result": "6",
+      "message": "Rule 'Try: [Integer]' success at pos 3"
+    },
+    {
+      "action": "success",
+      "rule": "atom",
+      "pos": 3,
+      "depth": 4,
+      "result": "6",
+      "message": "Rule 'atom' success at pos 3"
+    },
+    {
+      "action": "success",
+      "rule": "Try: [atom]",
+      "pos": 3,
+      "depth": 4,
+      "result": "6",
+      "message": "Rule 'Try: [atom]' success at pos 3"
+    },
+    {
+      "action": "success",
+      "rule": "dice",
+      "pos": 3,
+      "depth": 3,
+      "result": "6",
+      "message": "Rule 'dice' success at pos 3"
+    },
+    {
+      "action": "success",
+      "rule": "Try: [dice]",
+      "pos": 3,
+      "depth": 3,
+      "result": "6",
+      "message": "Rule 'Try: [dice]' success at pos 3"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [* dice]",
+      "pos": 3,
+      "depth": 3,
+      "message": "Entering rule 'Try: [* dice]' at pos 3"
+    },
+    {
+      "action": "fail",
+      "rule": "Try: [* dice]",
+      "pos": 3,
+      "depth": 3,
+      "result": "nil",
+      "message": "Rule 'Try: [* dice]' fail at pos 3"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [/ dice]",
+      "pos": 3,
+      "depth": 3,
+      "message": "Entering rule 'Try: [/ dice]' at pos 3"
+    },
+    {
+      "action": "fail",
+      "rule": "Try: [/ dice]",
+      "pos": 3,
+      "depth": 3,
+      "result": "nil",
+      "message": "Rule 'Try: [/ dice]' fail at pos 3"
+    },
+    {
+      "action": "success",
+      "rule": "term",
+      "pos": 3,
+      "depth": 2,
+      "result": "6",
+      "message": "Rule 'term' success at pos 3"
+    },
+    {
+      "action": "success",
+      "rule": "Try: [+ term]",
+      "pos": 3,
+      "depth": 2,
+      "result": "9",
+      "message": "Rule 'Try: [+ term]' success at pos 3"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [+ term]",
+      "pos": 3,
+      "depth": 2,
+      "message": "Entering rule 'Try: [+ term]' at pos 3"
+    },
+    {
+      "action": "fail",
+      "rule": "Try: [+ term]",
+      "pos": 3,
+      "depth": 2,
+      "result": "nil",
+      "message": "Rule 'Try: [+ term]' fail at pos 3"
+    },
+    {
+      "action": "enter",
+      "rule": "Try: [- term]",
+      "pos": 3,
+      "depth": 2,
+      "message": "Entering rule 'Try: [- term]' at pos 3"
+    },
+    {
+      "action": "fail",
+      "rule": "Try: [- term]",
+      "pos": 3,
+      "depth": 2,
+      "result": "nil",
+      "message": "Rule 'Try: [- term]' fail at pos 3"
+    },
+    {
+      "action": "success",
+      "rule": "expr",
+      "pos": 3,
+      "depth": 1,
+      "result": "9",
+      "message": "Rule 'expr' success at pos 3"
+    }
+  ]
+}
