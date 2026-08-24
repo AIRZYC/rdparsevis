@@ -17,8 +17,8 @@ By generating a JSON timeline from the parser's execution, RdparseVis allows use
 * **Ruby:** Required to run the modified `RdparseVis.rb` and generate the JSON timeline log.
 * **Web Browser:** Any modern web browser (Chrome, Firefox, Safari, Edge) to run the visualization interface.
 
-## Project status
+## The Project
 
-This project was developed as a part of a Bachelor of Science in Computer Engineering at Linköping Unversity 2026.
+This project was developed as a part of a Bachelor of Science in Computer Engineering at Linköping Unversity 2026. The tool works as intented but is not perfect yet, updates may still be published.
 
 
